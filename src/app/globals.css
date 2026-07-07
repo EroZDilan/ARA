@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  /* Colores madre */
+  --ara-navy: #0e2f57;
+  --ara-navy-deep: #081b33;
+  --ara-red: #d83a2e;
+  --ara-red-intense: #e53b2d;
+  --ara-gold: #e0a92b;
+  --ara-gold-bright: #f2b631;
+
+  /* Fondos dark extendidos */
+  --bg-forest: #071726; /* Midnight Forest Navy */
+  --bg-habitat: #0b2744; /* Deep Habitat Blue */
+  --bg-jungle: #112a22; /* Wet Jungle Green */
+  --bg-charcoal: #141a1f; /* Charcoal Organic */
+
+  /* Superficies */
+  --surface-1: #102233;
+  --surface-2: #132b41;
+  --surface-3: #18354f;
+
+  /* Texto */
+  --text-primary: #f5f1e8;
+  --text-secondary: #c9d1d9;
+  --text-tertiary: #97a8b8;
+  --text-disabled: #6d8194;
+
+  /* Estados narrativos */
+  --state-alert: #e04a3a;
+  --state-hope: #4daa74;
+  --state-edu: #4a8fd8;
+
+  --border-soft: rgba(245, 241, 232, 0.1);
+}
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+
+  --color-ara-navy: var(--ara-navy);
+  --color-ara-navy-deep: var(--ara-navy-deep);
+  --color-ara-red: var(--ara-red);
+  --color-ara-red-intense: var(--ara-red-intense);
+  --color-ara-gold: var(--ara-gold);
+  --color-ara-gold-bright: var(--ara-gold-bright);
+
+  --color-bg-forest: var(--bg-forest);
+  --color-bg-habitat: var(--bg-habitat);
+  --color-bg-jungle: var(--bg-jungle);
+  --color-bg-charcoal: var(--bg-charcoal);
+
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-disabled: var(--text-disabled);
+
+  --color-state-alert: var(--state-alert);
+  --color-state-hope: var(--state-hope);
+  --color-state-edu: var(--state-edu);
+
+  --color-border-soft: var(--border-soft);
+}
+
+body {
+  background: var(--bg-forest);
+  color: var(--text-primary);
+}

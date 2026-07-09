@@ -1,7 +1,13 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowIcon } from "@/components/icons";
+
+const GuacamayoVolador = dynamic(
+  () => import("@/components/GuacamayoVolador"),
+  { ssr: false },
+);
 
 const EASE_REVEAL = [0.22, 1, 0.36, 1] as const;
 
@@ -59,6 +65,23 @@ export default function CTAFinal() {
             "radial-gradient(45% 45% at 50% 35%, rgba(242,182,49,0.12) 0%, rgba(7,23,38,0) 70%)",
         }}
       />
+
+      {/* Guacamayo volando de fondo */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1.2 }}
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        <GuacamayoVolador
+          className="h-full w-full"
+          modelPath="/models/dove-bird.glb"
+          clipName="Fly"
+          fov={34}
+        />
+      </motion.div>
 
       <motion.div
         variants={container}

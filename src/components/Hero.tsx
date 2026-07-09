@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import {
   motion,
   useReducedMotion,
@@ -15,6 +16,11 @@ import {
   CommunityIcon,
   HabitatIcon,
 } from "@/components/icons";
+
+const GuacamayoVolador = dynamic(
+  () => import("@/components/GuacamayoVolador"),
+  { ssr: false },
+);
 
 const EASE_REVEAL = [0.22, 1, 0.36, 1] as const;
 
@@ -48,16 +54,72 @@ const pilares = [
 export default function Hero() {
   const reduce = useReducedMotion();
   const heroRef = useRef<HTMLElement>(null);
+  const roarRef = useRef<HTMLAudioElement>(null);
+  const [flying, setFlying] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
 
+  // El dragón ruge una sola vez, disparado por el primer scroll (o, si el
+  // navegador bloquea el autoplay con sonido en ese gesto, por la primera
+  // interacción de puntero/teclado como respaldo).
+  useEffect(() => {
+    if (reduce) return;
+    let played = false;
+
+    const tryPlay = () => {
+      if (played || !roarRef.current) return;
+      roarRef.current
+        .play()
+        .then(() => {
+          played = true;
+          cleanup();
+        })
+        .catch(() => {
+          // Bloqueado por política de autoplay: se reintenta en el
+          // siguiente gesto de usuario (pointerdown/keydown).
+        });
+    };
+
+    const unsubscribe = scrollYProgress.on("change", (v) => {
+      if (v > 0.04) tryPlay();
+    });
+    window.addEventListener("pointerdown", tryPlay);
+    window.addEventListener("keydown", tryPlay);
+
+    function cleanup() {
+      unsubscribe();
+      window.removeEventListener("pointerdown", tryPlay);
+      window.removeEventListener("keydown", tryPlay);
+    }
+
+    return cleanup;
+  }, [reduce, scrollYProgress]);
+
+  // El aleteo se acelera una vez que el despegue arranca (mismo umbral que
+  // el tramo de "impulso" de las transforms de abajo) y vuelve a la calma
+  // si el usuario sube de nuevo al tope del hero.
+  useEffect(() => {
+    return scrollYProgress.on("change", (v) => {
+      if (v > 0.15) setFlying(true);
+      else if (v < 0.05) setFlying(false);
+    });
+  }, [scrollYProgress]);
+
   const bgY = useTransform(scrollYProgress, [0, 1], [0, 40]);
   const visualY = useTransform(scrollYProgress, [0, 1], [0, 12]);
   const copyOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const copyY = useTransform(scrollYProgress, [0, 1], [0, -12]);
+  // Encuadre del despegue: un breve "impulso" de anticipación (agacharse un
+  // poco) en el primer 15% del scroll, y después el vuelo real hacia arriba
+  // y afuera de cuadro, con banking (rotación) y alejamiento (escala).
+  const dragonOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85], [1, 1, 0]);
+  const dragonX = useTransform(scrollYProgress, [0, 0.15, 1], [0, -14, 460]);
+  const dragonY = useTransform(scrollYProgress, [0, 0.15, 1], [0, 16, -380]);
+  const dragonRotate = useTransform(scrollYProgress, [0, 0.15, 1], [0, -4, 16]);
+  const dragonScale = useTransform(scrollYProgress, [0, 0.15, 1], [1, 1.04, 0.6]);
 
   const container: Variants = {
     hidden: {},
@@ -97,6 +159,8 @@ export default function Hero() {
       ref={heroRef}
       className="relative isolate overflow-hidden bg-bg-forest"
     >
+      <audio ref={roarRef} src="/audio/dragon-roar.mp3" preload="auto" />
+
       {/* Capa de fondo atmosférico */}
       <motion.div
         aria-hidden
@@ -145,7 +209,31 @@ export default function Hero() {
         </motion.header>
 
         {/* Cuerpo del hero */}
-        <div className="grid flex-1 grid-cols-1 items-center gap-12 py-16 lg:grid-cols-12 lg:gap-8 lg:py-0">
+        <div className="relative grid flex-1 grid-cols-1 items-center gap-12 py-16 lg:grid-cols-12 lg:gap-8 lg:py-0">
+          {/* Canvas grande tipo "viewport de Blender": le da espacio real
+              al dragón para volar y asentarse, en vez de una cajita fija
+              con una escala adivinada. */}
+          <motion.div
+            aria-hidden
+            style={{
+              opacity: reduce ? 1 : dragonOpacity,
+              x: reduce ? 0 : dragonX,
+              y: reduce ? 0 : dragonY,
+              rotate: reduce ? 0 : dragonRotate,
+              scale: reduce ? 1 : dragonScale,
+            }}
+            className="pointer-events-none absolute inset-0 z-10 hidden lg:block"
+          >
+            <GuacamayoVolador
+              className="h-full w-full"
+              modelPath="/models/dragon-negro.glb"
+              clipName="Scene"
+              fitMultiplier={6}
+              ambientSway
+              speed={reduce ? 1 : flying ? 2.4 : 1}
+            />
+          </motion.div>
+
           {/* Columna editorial izquierda */}
           <motion.div
             variants={container}

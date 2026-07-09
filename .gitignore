@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# fuentes de Blender sin comprimir (assets 3D en bruto, no usados en runtime)
+/blender-work/

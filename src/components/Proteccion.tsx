@@ -1,7 +1,13 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { BirdIcon, BookIcon, HabitatIcon, NetworkIcon } from "@/components/icons";
+
+const GuacamayoVolador = dynamic(
+  () => import("@/components/GuacamayoVolador"),
+  { ssr: false },
+);
 
 const EASE_REVEAL = [0.22, 1, 0.36, 1] as const;
 
@@ -108,7 +114,24 @@ export default function Proteccion() {
         </motion.div>
 
         {/* Bloque central: imagen + texto */}
-        <div className="mt-16 grid grid-cols-1 items-center gap-10 lg:mt-24 lg:grid-cols-12 lg:gap-8">
+        <div className="relative mt-16 grid grid-cols-1 items-center gap-10 lg:mt-24 lg:grid-cols-12 lg:gap-8">
+          {/* El guacamayo llega y se posa entre la imagen y el texto */}
+          <motion.div
+            aria-hidden
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: reduce ? 0.3 : 0.8, delay: reduce ? 0 : 0.2 }}
+            className="pointer-events-none absolute left-[52%] top-[40%] z-10 hidden h-[220px] w-[220px] -translate-x-1/2 -translate-y-1/2 lg:block"
+          >
+            <GuacamayoVolador
+              className="h-full w-full"
+              modelPath="/models/scourger.glb"
+              clipName="Idle"
+              fov={30}
+            />
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, x: reduce ? 0 : -24, scale: reduce ? 1 : 1.04 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}

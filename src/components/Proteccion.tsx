@@ -3,13 +3,24 @@
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { BirdIcon, BookIcon, HabitatIcon, NetworkIcon } from "@/components/icons";
+import LazyMount from "@/components/LazyMount";
+import SplitText from "@/components/reactbits/SplitText";
+import ScrollReveal from "@/components/reactbits/ScrollReveal";
+import GradualBlur from "@/components/reactbits/GradualBlur";
+import SpotlightCard from "@/components/reactbits/SpotlightCard";
 
-const GuacamayoVolador = dynamic(
-  () => import("@/components/GuacamayoVolador"),
-  { ssr: false },
-);
+const CircularGallery = dynamic(() => import("@/components/reactbits/CircularGallery"), {
+  ssr: false,
+});
 
 const EASE_REVEAL = [0.22, 1, 0.36, 1] as const;
+
+const territorioGaleria = [
+  { image: "/images/gallery/bosque.jpg", text: "Bosque húmedo" },
+  { image: "/images/gallery/humedal.jpg", text: "Humedal costero" },
+  { image: "/images/gallery/birdwatcher.jpg", text: "Monitoreo en campo" },
+  { image: "/images/gallery/observacion.jpg", text: "Observación y cuidado" },
+];
 
 const pilares = [
   {
@@ -95,12 +106,17 @@ export default function Proteccion() {
             Cómo actúa ARA
           </motion.p>
 
-          <motion.h2
-            variants={fadeUp}
-            className="font-serif text-[36px] font-semibold leading-[1.05] text-text-primary sm:text-[44px] lg:text-[52px]"
-          >
-            Protección integral para aves y hábitats
-          </motion.h2>
+          <motion.div variants={fadeUp}>
+            <SplitText
+              tag="h2"
+              text="Protección integral para aves y hábitats"
+              className="font-serif text-[36px] font-semibold leading-[1.05] text-text-primary sm:text-[44px] lg:text-[52px]"
+              splitType="words"
+              duration={0.7}
+              delay={80}
+              ease="power3.out"
+            />
+          </motion.div>
 
           <motion.p
             variants={fadeUp}
@@ -114,24 +130,7 @@ export default function Proteccion() {
         </motion.div>
 
         {/* Bloque central: imagen + texto */}
-        <div className="relative mt-16 grid grid-cols-1 items-center gap-10 lg:mt-24 lg:grid-cols-12 lg:gap-8">
-          {/* El guacamayo llega y se posa entre la imagen y el texto */}
-          <motion.div
-            aria-hidden
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: reduce ? 0.3 : 0.8, delay: reduce ? 0 : 0.2 }}
-            className="pointer-events-none absolute left-[52%] top-[40%] z-10 hidden h-[220px] w-[220px] -translate-x-1/2 -translate-y-1/2 lg:block"
-          >
-            <GuacamayoVolador
-              className="h-full w-full"
-              modelPath="/models/scourger.glb"
-              clipName="Idle"
-              fov={30}
-            />
-          </motion.div>
-
+        <div className="mt-16 grid grid-cols-1 items-center gap-10 lg:mt-24 lg:grid-cols-12 lg:gap-8">
           <motion.div
             initial={{ opacity: 0, x: reduce ? 0 : -24, scale: reduce ? 1 : 1.04 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
@@ -168,11 +167,14 @@ export default function Proteccion() {
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-state-edu">
               Nuestra forma de cuidar
             </p>
-            <p className="mt-4 font-serif text-2xl font-medium leading-snug text-text-primary sm:text-[28px]">
+            <ScrollReveal
+              containerClassName="mt-4"
+              textClassName="font-serif text-2xl font-medium leading-snug text-text-primary sm:text-[28px]"
+            >
               Conservar una especie también implica proteger el lugar donde
               vive, entender sus amenazas y construir redes que hagan posible
               su cuidado a largo plazo.
-            </p>
+            </ScrollReveal>
             <p className="mt-6 leading-relaxed text-text-secondary">
               En ARA desarrollamos acciones que conectan la observación y el
               seguimiento de aves con el cuidado de los ecosistemas que
@@ -186,6 +188,33 @@ export default function Proteccion() {
           </motion.div>
         </div>
 
+        {/* Territorio en protección */}
+        <motion.div
+          initial={{ opacity: 0, scale: reduce ? 1 : 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: reduce ? 0.3 : 1, ease: EASE_REVEAL }}
+          className="mt-16 lg:mt-24"
+        >
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-text-disabled">
+            El territorio que protegemos
+          </p>
+          <div className="relative h-[360px] overflow-hidden rounded-[28px] border border-border-soft bg-[#081521] lg:h-[420px]">
+            <LazyMount rootMargin="400px" className="h-full w-full">
+              <CircularGallery
+                items={territorioGaleria}
+                bend={2}
+                textColor="#F5F1E8"
+                borderRadius={0.06}
+                scrollSpeed={1.6}
+                scrollEase={0.06}
+              />
+            </LazyMount>
+            <GradualBlur position="left" width="8%" strength={1.5} />
+            <GradualBlur position="right" width="8%" strength={1.5} />
+          </div>
+        </motion.div>
+
         {/* Pilares de acción */}
         <motion.div
           variants={pillarsContainer}
@@ -198,9 +227,10 @@ export default function Proteccion() {
             <motion.div
               key={pilar.title}
               variants={pillarItem}
-              className="group rounded-[26px] border border-border-soft bg-[rgba(13,33,52,0.65)] p-7 transition-all duration-300 hover:bg-[rgba(13,33,52,0.85)]"
+              className="group relative rounded-[26px] border border-border-soft bg-[rgba(13,33,52,0.65)] p-7 transition-all duration-300 hover:bg-[rgba(13,33,52,0.85)]"
             >
-              <pilar.icon className="mb-4 h-6 w-6 text-ara-gold-bright transition-transform duration-300 group-hover:scale-110" />
+              <SpotlightCard className="!absolute !inset-0 z-0" spotlightColor="rgba(242,182,49,0.1)" />
+              <pilar.icon className="relative mb-4 h-6 w-6 text-ara-gold-bright transition-transform duration-300 group-hover:scale-110" />
               <h3 className="text-lg font-semibold text-text-primary">
                 {pilar.title}
               </h3>

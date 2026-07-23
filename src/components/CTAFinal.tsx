@@ -1,13 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowIcon } from "@/components/icons";
-
-const GuacamayoVolador = dynamic(
-  () => import("@/components/GuacamayoVolador"),
-  { ssr: false },
-);
+import Magnet from "@/components/reactbits/Magnet";
+import ClickSpark from "@/components/reactbits/ClickSpark";
+import SplitText from "@/components/reactbits/SplitText";
 
 const EASE_REVEAL = [0.22, 1, 0.36, 1] as const;
 
@@ -66,23 +63,6 @@ export default function CTAFinal() {
         }}
       />
 
-      {/* Guacamayo volando de fondo */}
-      <motion.div
-        aria-hidden
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.5 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 1.2 }}
-        className="pointer-events-none absolute inset-0 -z-10"
-      >
-        <GuacamayoVolador
-          className="h-full w-full"
-          modelPath="/models/dove-bird.glb"
-          clipName="Fly"
-          fov={34}
-        />
-      </motion.div>
-
       <motion.div
         variants={container}
         initial="hidden"
@@ -98,13 +78,18 @@ export default function CTAFinal() {
           Sumarte también es una forma de proteger
         </motion.p>
 
-        <motion.h2
-          variants={fadeUp}
-          className="font-serif text-[34px] font-semibold leading-[1.08] text-text-primary sm:text-[44px] lg:text-[52px]"
-        >
-          Proteger las aves endémicas de Cuba también es proteger el
-          territorio que las hace posibles.
-        </motion.h2>
+        <motion.div variants={fadeUp}>
+          <SplitText
+            tag="h2"
+            text="Proteger las aves endémicas de Cuba también es proteger el territorio que las hace posibles."
+            className="font-serif text-[34px] font-semibold leading-[1.08] text-text-primary sm:text-[44px] lg:text-[52px]"
+            splitType="words"
+            duration={0.7}
+            delay={80}
+            ease="power3.out"
+            textAlign="center"
+          />
+        </motion.div>
 
         <motion.p
           variants={fadeUp}
@@ -119,19 +104,27 @@ export default function CTAFinal() {
           variants={fadeUp}
           className="mt-10 flex flex-col gap-3.5 sm:flex-row sm:items-center"
         >
-          <a
-            href="#apoyar"
-            className="group inline-flex items-center justify-center gap-2 rounded-full bg-ara-red px-8 py-3.5 text-[15px] font-medium text-text-primary shadow-[0_10px_30px_-10px_rgba(216,58,46,0.6)] transition-all duration-200 hover:brightness-110"
-          >
-            Apoyar a ARA
-            <ArrowIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </a>
-          <a
-            href="#contacto"
-            className="inline-flex items-center justify-center rounded-full border border-border-soft bg-white/[0.02] px-8 py-3.5 text-[15px] font-medium text-text-primary backdrop-blur-sm transition-all duration-200 hover:border-text-secondary/40 hover:bg-white/[0.05]"
-          >
-            Contactar con el equipo
-          </a>
+          <Magnet padding={50} magnetStrength={6}>
+            <ClickSpark sparkColor="#F2B631">
+              <a
+                href="#apoyar"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-ara-red px-8 py-3.5 text-[15px] font-medium text-text-primary shadow-[0_10px_30px_-10px_rgba(216,58,46,0.6)] transition-all duration-200 hover:brightness-110"
+              >
+                Apoyar a ARA
+                <ArrowIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </a>
+            </ClickSpark>
+          </Magnet>
+          <Magnet padding={50} magnetStrength={6}>
+            <ClickSpark sparkColor="#F5F1E8">
+              <a
+                href="#contacto"
+                className="inline-flex items-center justify-center rounded-full border border-border-soft bg-white/[0.02] px-8 py-3.5 text-[15px] font-medium text-text-primary backdrop-blur-sm transition-all duration-200 hover:border-text-secondary/40 hover:bg-white/[0.05]"
+              >
+                Contactar con el equipo
+              </a>
+            </ClickSpark>
+          </Magnet>
         </motion.div>
 
         <motion.a

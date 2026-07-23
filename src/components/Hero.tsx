@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import { useRef } from "react";
 import {
   motion,
   useReducedMotion,
@@ -16,20 +15,12 @@ import {
   CommunityIcon,
   HabitatIcon,
 } from "@/components/icons";
-
-const GuacamayoVolador = dynamic(
-  () => import("@/components/GuacamayoVolador"),
-  { ssr: false },
-);
+import Aurora from "@/components/Aurora";
+import Magnet from "@/components/reactbits/Magnet";
+import ClickSpark from "@/components/reactbits/ClickSpark";
+import RotatingText from "@/components/reactbits/RotatingText";
 
 const EASE_REVEAL = [0.22, 1, 0.36, 1] as const;
-
-const navLinks = [
-  { label: "Proyecto", href: "#proyecto" },
-  { label: "Especies", href: "#especies" },
-  { label: "Impacto", href: "#impacto" },
-  { label: "Cómo ayudar", href: "#ayudar" },
-];
 
 const pilares = [
   {
@@ -54,72 +45,16 @@ const pilares = [
 export default function Hero() {
   const reduce = useReducedMotion();
   const heroRef = useRef<HTMLElement>(null);
-  const roarRef = useRef<HTMLAudioElement>(null);
-  const [flying, setFlying] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
 
-  // El dragón ruge una sola vez, disparado por el primer scroll (o, si el
-  // navegador bloquea el autoplay con sonido en ese gesto, por la primera
-  // interacción de puntero/teclado como respaldo).
-  useEffect(() => {
-    if (reduce) return;
-    let played = false;
-
-    const tryPlay = () => {
-      if (played || !roarRef.current) return;
-      roarRef.current
-        .play()
-        .then(() => {
-          played = true;
-          cleanup();
-        })
-        .catch(() => {
-          // Bloqueado por política de autoplay: se reintenta en el
-          // siguiente gesto de usuario (pointerdown/keydown).
-        });
-    };
-
-    const unsubscribe = scrollYProgress.on("change", (v) => {
-      if (v > 0.04) tryPlay();
-    });
-    window.addEventListener("pointerdown", tryPlay);
-    window.addEventListener("keydown", tryPlay);
-
-    function cleanup() {
-      unsubscribe();
-      window.removeEventListener("pointerdown", tryPlay);
-      window.removeEventListener("keydown", tryPlay);
-    }
-
-    return cleanup;
-  }, [reduce, scrollYProgress]);
-
-  // El aleteo se acelera una vez que el despegue arranca (mismo umbral que
-  // el tramo de "impulso" de las transforms de abajo) y vuelve a la calma
-  // si el usuario sube de nuevo al tope del hero.
-  useEffect(() => {
-    return scrollYProgress.on("change", (v) => {
-      if (v > 0.15) setFlying(true);
-      else if (v < 0.05) setFlying(false);
-    });
-  }, [scrollYProgress]);
-
   const bgY = useTransform(scrollYProgress, [0, 1], [0, 40]);
   const visualY = useTransform(scrollYProgress, [0, 1], [0, 12]);
   const copyOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const copyY = useTransform(scrollYProgress, [0, 1], [0, -12]);
-  // Encuadre del despegue: un breve "impulso" de anticipación (agacharse un
-  // poco) en el primer 15% del scroll, y después el vuelo real hacia arriba
-  // y afuera de cuadro, con banking (rotación) y alejamiento (escala).
-  const dragonOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85], [1, 1, 0]);
-  const dragonX = useTransform(scrollYProgress, [0, 0.15, 1], [0, -14, 460]);
-  const dragonY = useTransform(scrollYProgress, [0, 0.15, 1], [0, 16, -380]);
-  const dragonRotate = useTransform(scrollYProgress, [0, 0.15, 1], [0, -4, 16]);
-  const dragonScale = useTransform(scrollYProgress, [0, 0.15, 1], [1, 1.04, 0.6]);
 
   const container: Variants = {
     hidden: {},
@@ -159,9 +94,10 @@ export default function Hero() {
       ref={heroRef}
       className="relative isolate overflow-hidden bg-bg-forest"
     >
-      <audio ref={roarRef} src="/audio/dragon-roar.mp3" preload="auto" />
-
       {/* Capa de fondo atmosférico */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-20 opacity-70">
+        <Aurora colorStops={["#0e2f57", "#e0a92b", "#112a22"]} amplitude={1.0} blend={0.5} speed={0.5} />
+      </div>
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
@@ -172,68 +108,9 @@ export default function Hero() {
         }}
       />
 
-      <div className="mx-auto flex min-h-[100svh] max-w-[1440px] flex-col px-6 pb-12 pt-7 md:px-10 md:pt-8 lg:px-[72px]">
-        {/* Header / navegación */}
-        <motion.header
-          initial={{ opacity: 0, y: reduce ? 0 : -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.12, ease: EASE_REVEAL }}
-          className="flex items-center justify-between gap-6"
-        >
-          <a href="#" className="flex items-baseline gap-2">
-            <span className="font-serif text-2xl font-semibold tracking-tight text-text-primary">
-              ARA
-            </span>
-          </a>
-
-          <div className="flex items-center gap-8">
-            <nav className="hidden items-center gap-8 lg:flex">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm text-text-secondary transition-colors duration-200 hover:text-text-primary"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-
-            <a
-              href="#ayudar"
-              className="rounded-full bg-ara-red px-5 py-2.5 text-sm font-medium text-text-primary shadow-[0_8px_24px_-8px_rgba(216,58,46,0.55)] transition-all duration-200 hover:brightness-110"
-            >
-              Apoyar ahora
-            </a>
-          </div>
-        </motion.header>
-
+      <div className="mx-auto flex min-h-[100svh] max-w-[1440px] flex-col px-6 pb-12 pt-24 md:px-10 md:pt-28 lg:px-[72px]">
         {/* Cuerpo del hero */}
-        <div className="relative grid flex-1 grid-cols-1 items-center gap-12 py-16 lg:grid-cols-12 lg:gap-8 lg:py-0">
-          {/* Canvas grande tipo "viewport de Blender": le da espacio real
-              al dragón para volar y asentarse, en vez de una cajita fija
-              con una escala adivinada. */}
-          <motion.div
-            aria-hidden
-            style={{
-              opacity: reduce ? 1 : dragonOpacity,
-              x: reduce ? 0 : dragonX,
-              y: reduce ? 0 : dragonY,
-              rotate: reduce ? 0 : dragonRotate,
-              scale: reduce ? 1 : dragonScale,
-            }}
-            className="pointer-events-none absolute inset-0 z-10 hidden lg:block"
-          >
-            <GuacamayoVolador
-              className="h-full w-full"
-              modelPath="/models/dragon-negro.glb"
-              clipName="Scene"
-              fitMultiplier={6}
-              ambientSway
-              speed={reduce ? 1 : flying ? 2.4 : 1}
-            />
-          </motion.div>
-
+        <div className="grid flex-1 grid-cols-1 items-center gap-12 py-16 lg:grid-cols-12 lg:gap-8 lg:py-0">
           {/* Columna editorial izquierda */}
           <motion.div
             variants={container}
@@ -246,8 +123,19 @@ export default function Hero() {
               variants={fadeUp}
               className="mb-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-ara-gold-bright"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-ara-gold-bright" />
-              Conservación de aves endémicas de Cuba
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-ara-gold-bright" />
+              <span>
+                Conservación de{" "}
+                <RotatingText
+                  texts={["aves endémicas", "hábitats únicos", "comunidades locales"]}
+                  staggerFrom="first"
+                  staggerDuration={0.01}
+                  rotationInterval={2600}
+                  splitBy="characters"
+                  transition={{ type: "spring", damping: 28, stiffness: 300 }}
+                />{" "}
+                de Cuba
+              </span>
             </motion.p>
 
             <motion.h1
@@ -270,19 +158,27 @@ export default function Hero() {
               variants={fadeUp}
               className="mt-9 flex flex-col gap-3.5 sm:flex-row sm:items-center"
             >
-              <a
-                href="#proyecto"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-ara-red px-7 py-3.5 text-[15px] font-medium text-text-primary shadow-[0_10px_30px_-10px_rgba(216,58,46,0.6)] transition-all duration-200 hover:brightness-110"
-              >
-                Conoce el proyecto
-                <ArrowIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </a>
-              <a
-                href="#ayudar"
-                className="inline-flex items-center justify-center rounded-full border border-border-soft bg-white/[0.02] px-7 py-3.5 text-[15px] font-medium text-text-primary backdrop-blur-sm transition-all duration-200 hover:border-text-secondary/40 hover:bg-white/[0.05]"
-              >
-                Cómo ayudar
-              </a>
+              <Magnet padding={50} magnetStrength={6}>
+                <ClickSpark sparkColor="#F2B631">
+                  <a
+                    href="#proyecto"
+                    className="group inline-flex items-center justify-center gap-2 rounded-full bg-ara-red px-7 py-3.5 text-[15px] font-medium text-text-primary shadow-[0_10px_30px_-10px_rgba(216,58,46,0.6)] transition-all duration-200 hover:brightness-110"
+                  >
+                    Conoce el proyecto
+                    <ArrowIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </a>
+                </ClickSpark>
+              </Magnet>
+              <Magnet padding={50} magnetStrength={6}>
+                <ClickSpark sparkColor="#F5F1E8">
+                  <a
+                    href="#ayudar"
+                    className="inline-flex items-center justify-center rounded-full border border-border-soft bg-white/[0.02] px-7 py-3.5 text-[15px] font-medium text-text-primary backdrop-blur-sm transition-all duration-200 hover:border-text-secondary/40 hover:bg-white/[0.05]"
+                  >
+                    Cómo ayudar
+                  </a>
+                </ClickSpark>
+              </Magnet>
             </motion.div>
 
             <motion.div

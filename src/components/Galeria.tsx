@@ -4,6 +4,9 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import TiltCard from "@/components/TiltCard";
+import LazyMount from "@/components/LazyMount";
+import SplitText from "@/components/reactbits/SplitText";
+import GlareHover from "@/components/reactbits/GlareHover";
 
 const AveInteractiva3D = dynamic(
   () => import("@/components/AveInteractiva3D"),
@@ -129,12 +132,17 @@ export default function Galeria() {
               Aves, hábitats y trabajo en marcha
             </motion.p>
 
-            <motion.h2
-              variants={fadeUp}
-              className="font-serif text-[36px] font-semibold leading-[1.05] text-text-primary sm:text-[44px] lg:text-[52px]"
-            >
-              Una galería del territorio que buscamos proteger
-            </motion.h2>
+            <motion.div variants={fadeUp}>
+              <SplitText
+                tag="h2"
+                text="Una galería del territorio que buscamos proteger"
+                className="font-serif text-[36px] font-semibold leading-[1.05] text-text-primary sm:text-[44px] lg:text-[52px]"
+                splitType="words"
+                duration={0.7}
+                delay={80}
+                ease="power3.out"
+              />
+            </motion.div>
 
             <motion.p
               variants={fadeUp}
@@ -155,7 +163,9 @@ export default function Galeria() {
             className="relative lg:col-span-5"
           >
             <div className="relative mx-auto h-[220px] w-full max-w-[320px] sm:h-[280px] lg:h-[340px]">
-              <AveInteractiva3D className="h-full w-full" />
+              <LazyMount rootMargin="400px" className="h-full w-full">
+                <AveInteractiva3D className="h-full w-full" />
+              </LazyMount>
             </div>
             <p className="mt-2 text-center text-xs uppercase tracking-[0.14em] text-text-disabled">
               Arrastra para girar al tocororo
@@ -185,6 +195,7 @@ export default function Galeria() {
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
                 />
+                <GlareHover glareColor="#F5F1E8" glareOpacity={0.22} transitionDuration={800} />
                 <div
                   aria-hidden
                   className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/5 transition-opacity duration-400 group-hover:from-black/60"

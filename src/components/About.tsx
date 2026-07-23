@@ -1,6 +1,9 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import SplitText from "@/components/reactbits/SplitText";
+import ScrollReveal from "@/components/reactbits/ScrollReveal";
+import SpotlightCard from "@/components/reactbits/SpotlightCard";
 
 const EASE_REVEAL = [0.22, 1, 0.36, 1] as const;
 
@@ -82,12 +85,17 @@ export default function About() {
             Quiénes sostienen ARA
           </motion.p>
 
-          <motion.h2
-            variants={fadeUp}
-            className="font-serif text-[36px] font-semibold leading-[1.05] text-text-primary sm:text-[44px] lg:text-[52px]"
-          >
-            Un proyecto impulsado por cuidado, conocimiento y compromiso
-          </motion.h2>
+          <motion.div variants={fadeUp}>
+            <SplitText
+              tag="h2"
+              text="Un proyecto impulsado por cuidado, conocimiento y compromiso"
+              className="font-serif text-[36px] font-semibold leading-[1.05] text-text-primary sm:text-[44px] lg:text-[52px]"
+              splitType="words"
+              duration={0.7}
+              delay={80}
+              ease="power3.out"
+            />
+          </motion.div>
 
           <motion.p
             variants={fadeUp}
@@ -140,8 +148,9 @@ export default function About() {
             <motion.div
               key={persona.nombre}
               variants={cardItem}
-              className="group rounded-[24px] border border-border-soft bg-surface-1/70 p-7 transition-colors duration-300 hover:border-text-secondary/30"
+              className="group relative rounded-[24px] border border-border-soft bg-surface-1/70 p-7 transition-colors duration-300 hover:border-text-secondary/30"
             >
+              <SpotlightCard className="!absolute !inset-0 z-0" spotlightColor="rgba(74,143,216,0.12)" />
               <div className="mb-4 h-px w-8 bg-ara-gold-bright/60 transition-all duration-300 group-hover:w-12" />
               <h3 className="font-serif text-xl font-medium text-text-primary transition-colors duration-300 group-hover:text-white">
                 {persona.nombre}
@@ -156,16 +165,13 @@ export default function About() {
           ))}
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: reduce ? 0 : 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.8, ease: EASE_REVEAL }}
-          className="mt-14 max-w-[680px] text-lg leading-relaxed text-text-secondary lg:mt-16"
+        <ScrollReveal
+          containerClassName="mt-14 max-w-[680px] lg:mt-16"
+          textClassName="text-lg leading-relaxed text-text-secondary"
         >
           Conocer a ARA también es ver de cerca las especies, los paisajes y
           los procesos de conservación que dan sentido al proyecto.
-        </motion.p>
+        </ScrollReveal>
       </div>
     </section>
   );

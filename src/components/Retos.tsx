@@ -1,6 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import SplitText from "@/components/reactbits/SplitText";
+import SpotlightCard from "@/components/reactbits/SpotlightCard";
 
 const EASE_REVEAL = [0.22, 1, 0.36, 1] as const;
 
@@ -101,12 +103,17 @@ export default function Retos() {
             Por qué es urgente actuar
           </motion.p>
 
-          <motion.h2
-            variants={fadeUp}
-            className="font-serif text-[36px] font-semibold leading-[1.05] text-text-primary sm:text-[44px] lg:text-[52px]"
-          >
-            Lo que enfrentan hoy las aves de Cuba
-          </motion.h2>
+          <motion.div variants={fadeUp}>
+            <SplitText
+              tag="h2"
+              text="Lo que enfrentan hoy las aves de Cuba"
+              className="font-serif text-[36px] font-semibold leading-[1.05] text-text-primary sm:text-[44px] lg:text-[52px]"
+              splitType="words"
+              duration={0.7}
+              delay={80}
+              ease="power3.out"
+            />
+          </motion.div>
 
           <motion.p
             variants={fadeUp}
@@ -130,8 +137,9 @@ export default function Retos() {
             <motion.article
               key={reto.id}
               variants={cardItem}
-              className="group overflow-hidden rounded-[28px] border border-border-soft bg-surface-1/60 transition-colors duration-300 hover:border-text-secondary/30"
+              className="group relative overflow-hidden rounded-[28px] border border-border-soft bg-surface-1/60 transition-colors duration-300 hover:border-text-secondary/30"
             >
+              <SpotlightCard className="!absolute !inset-0 z-0" spotlightColor="rgba(242,182,49,0.12)" />
               <div
                 className="relative flex aspect-[4/3] items-center justify-center border-b border-border-soft p-6 text-center"
                 style={{ background: reto.gradient }}

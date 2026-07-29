@@ -931,7 +931,7 @@ No estoy definiendo aquí un listado biológico definitivo, sino un **orden visu
 
 ## Nivel 1 — Aves hero / protagonistas
 
-* **Tocororo** — ave icónica, identidad cubana, altísimo valor simbólico
+* **Guacamayo** — ave icónica, identidad cubana, altísimo valor simbólico
 * **Zunzún** — escala, delicadeza, dinamismo visual
 * **Cartacuba / loros / especies endémicas visualmente fuertes** según disponibilidad y fidelidad
 

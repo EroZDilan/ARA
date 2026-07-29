@@ -7,7 +7,7 @@
 > **02. Retos que enfrentan las aves de Cuba**
 > **03. Protección integral / cómo actúa ARA**
 > **Dirección visual aprobada:** **Dark cinematic conservation**
-> **Continuidad visual:** basada en el **hero dark con tocororo** ya aprobado.
+> **Continuidad visual:** basada en el **hero dark con guacamayo** ya aprobado.
 
 ---
 

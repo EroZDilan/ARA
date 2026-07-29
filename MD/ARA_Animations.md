@@ -181,11 +181,11 @@ No necesitamos una intro cinematográfica de 12 segundos; necesitamos una primer
 * presencia
 * respiración
 * elegancia
-* foco claro en el tocororo y el mensaje
+* foco claro en el guacamayo y el mensaje
 
 ## Sensación que debe dar el hero
 
-Cuando se carga la página, debería sentirse como si el usuario estuviera entrando en un hábitat oscuro donde el tocororo ya estaba ahí, esperando.
+Cuando se carga la página, debería sentirse como si el usuario estuviera entrando en un hábitat oscuro donde el guacamayo ya estaba ahí, esperando.
 
 ---
 
@@ -206,7 +206,7 @@ Yo lo pensaría en **4 capas**:
 * `HERO-TX-01`
 * bruma, sombra botánica, glow suave
 
-### `hero-layer-03` — imagen principal del tocororo
+### `hero-layer-03` — imagen principal del guacamayo
 
 * `HERO-IMG-01`
 
@@ -246,7 +246,7 @@ No instantáneo, pero tampoco excesivo.
 * opacidad `0 → 0.55` aprox.
 * desplazamiento vertical muy pequeño `y: 12 → 0`
 
-### Paso 3 — entra el tocororo
+### Paso 3 — entra el guacamayo
 
 **Duración:** 1000–1400 ms
 **Animación:**
@@ -292,7 +292,7 @@ Pero tampoco queremos un loop evidente.
 * movimiento lateral o vertical mínimo
 * como si hubiera aire / humedad
 
-### Tocororo
+### Guacamayo
 
 Aquí hay que ser prudentes.
 No movería el ave como si estuviera flotando.
@@ -313,7 +313,7 @@ Cuando el usuario empieza a hacer scroll:
 
 * el **background** se mueve un poco más lento que el scroll
 * la **textura** se mueve ligeramente diferente
-* el **tocororo** se desplaza muy poco
+* el **guacamayo** se desplaza muy poco
 * el **copy** puede tener un fade out progresivo
 
 ## Valores orientativos
@@ -326,7 +326,7 @@ Cuando el usuario empieza a hacer scroll:
 
 `translateY: 0 → 20px`
 
-### Tocororo
+### Guacamayo
 
 `translateY: 0 → 12px`
 
@@ -1053,7 +1053,7 @@ En mobile reduciría la complejidad de animación aproximadamente un **30–40%*
 
 * entrada secuencial del hero
 * fade del background
-* entrada del tocororo
+* entrada del guacamayo
 * stagger del texto
 
 ## Reduciría
@@ -1183,7 +1183,7 @@ Yo dejaría una tabla por asset con estos campos:
 
 * hero apilado
 * copy arriba o entre capas según mockup
-* imagen del tocororo recortada específicamente para mobile
+* imagen del guacamayo recortada específicamente para mobile
 * evitar que el CTA quede demasiado abajo
 
 ---

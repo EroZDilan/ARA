@@ -8,7 +8,7 @@
 > **05. Galería híbrida de proyectos + aves**
 > **06. CTA final / cierre de landing**
 > **Dirección visual aprobada:** **Dark cinematic conservation**
-> **Continuidad visual:** basada en el **hero dark con tocororo** y en las secciones de **Retos + Protección** ya definidas.
+> **Continuidad visual:** basada en el **hero dark con guacamayo** y en las secciones de **Retos + Protección** ya definidas.
 
 ---
 
@@ -797,7 +797,7 @@ Eso permite equilibrio entre variedad y control.
 
 Ejemplos:
 
-* tocororo
+* guacamayo
 * otra ave endémica
 * detalle de plumaje / retrato de especie
 
@@ -880,7 +880,7 @@ que la pieza dominante sea **una gran imagen de ave** o **una imagen que combine
 
 ## Idealmente
 
-* tocororo o especie emblemática
+* guacamayo o especie emblemática
 * muy bien iluminada
 * con textura dark y detalle de plumaje
 
@@ -903,7 +903,7 @@ En cada item:
 ### Ejemplo
 
 **Especie**
-Tocororo
+Guacamayo
 
 **Hábitat**
 Bosque húmedo

@@ -67,6 +67,10 @@ export default function About() {
   return (
     <section
       id="equipo"
+      data-perch-x="0.92"
+      data-perch-y="0.2"
+      data-perch-scale="0.7"
+      data-perch-hidden="1"
       className="relative bg-[#0a1624] px-6 py-24 md:px-10 md:py-32 lg:px-[72px] lg:py-40"
     >
       <div className="mx-auto max-w-[1440px]">

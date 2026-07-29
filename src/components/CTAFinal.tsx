@@ -31,6 +31,10 @@ export default function CTAFinal() {
   return (
     <section
       id="ayudar"
+      data-perch-x="0"
+      data-perch-y="0.24"
+      data-perch-scale="0.9"
+      data-perch-face="left"
       className="relative isolate overflow-hidden bg-bg-forest px-6 py-28 md:px-10 md:py-36 lg:px-[72px] lg:py-44"
     >
       {/* Fondo atmosférico CTA-BG-01 */}

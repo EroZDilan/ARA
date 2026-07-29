@@ -113,6 +113,10 @@ export default function Galeria() {
   return (
     <section
       id="especies"
+      data-perch-x="0.95"
+      data-perch-y="0"
+      data-perch-scale="0.7"
+      data-perch-hidden="1"
       className="relative overflow-hidden bg-[#081521] px-6 py-24 md:px-10 md:py-32 lg:px-[72px] lg:py-40"
     >
       <div className="mx-auto max-w-[1440px]">

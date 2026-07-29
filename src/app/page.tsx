@@ -7,13 +7,13 @@ import About from "@/components/About";
 import Galeria from "@/components/Galeria";
 import CTAFinal from "@/components/CTAFinal";
 import Footer from "@/components/Footer";
-import Noise from "@/components/reactbits/Noise";
 import SectionIndicator from "@/components/SectionIndicator";
+import GuacamayoScene from "@/components/GuacamayoScene";
 
 export default function Home() {
   return (
     <>
-      <Noise />
+      <GuacamayoScene />
       <SiteNav />
       <SectionIndicator />
       <main className="flex flex-1 flex-col">

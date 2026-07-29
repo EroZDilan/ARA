@@ -88,6 +88,10 @@ export default function Proteccion() {
   return (
     <section
       id="proyecto"
+      data-perch-x="0.01"
+      data-perch-y="0.08"
+      data-perch-scale="0.75"
+      data-perch-face="right"
       className="relative bg-bg-habitat px-6 py-24 md:px-10 md:py-32 lg:px-[72px] lg:py-40"
     >
       <div className="mx-auto max-w-[1440px]">

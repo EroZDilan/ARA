@@ -4,7 +4,7 @@
 > **Documento:** Pack de prompts de producción de imágenes para la landing
 > **Objetivo:** convertir la masterlist visual en un sistema de prompts listo para generar **todas las imágenes de la web** con consistencia estética, narrativa y técnica.
 > **Dirección visual aprobada:** **dark cinematic conservation**
-> **Animal protagonista aprobado:** **tocororo**
+> **Animal protagonista aprobado:** **guacamayo**
 > **Rol de este documento:** servir como **pipeline de producción** para generar los assets visuales de la landing sin improvisar y con una línea visual unificada.
 
 ---
@@ -64,7 +64,7 @@ Según el asset, pero como lenguaje visual común:
 * bruma suave o humedad ambiental
 * sombras orgánicas
 * colores oscuros: navy, verde bosque, azul petróleo
-* acentos puntuales en rojo / azul / blanco del tocororo
+* acentos puntuales en rojo / azul / blanco del guacamayo
 * texturas naturales: ramas, hojas, corteza, niebla, agua, suelo
 
 ---
@@ -154,7 +154,7 @@ Voy a ordenar este pack igual que recomiendo producirlo.
 
 ## Nombre
 
-**Tocororo hero dark principal**
+**Guacamayo hero dark principal**
 
 ## Sección
 
@@ -162,7 +162,7 @@ Hero
 
 ## Objetivo visual
 
-Crear la **imagen más importante de toda la landing**: un retrato editorial y cinematográfico del tocororo que funcione como símbolo de ARA, de la conservación y del valor de las aves endémicas cubanas.
+Crear la **imagen más importante de toda la landing**: un retrato editorial y cinematográfico del guacamayo que funcione como símbolo de ARA, de la conservación y del valor de las aves endémicas cubanas.
 
 ## Qué tiene que transmitir
 
@@ -176,11 +176,11 @@ Crear la **imagen más importante de toda la landing**: un retrato editorial y c
 
 ## Prompt maestro largo
 
-**Un tocororo cubano como protagonista absoluto de una landing premium sobre conservación de aves endémicas en Cuba, retrato editorial cinematográfico, posado sobre una rama natural en un bosque cubano oscuro y húmedo, iluminación suave y dramática filtrada entre la vegetación, fondo con profundidad y atmósfera tropical sombreada, detalle muy rico del plumaje rojo azul y blanco, presencia noble y serena, composición elegante con espacio negativo para diseño web, dark cinematic conservation, premium editorial wildlife image, realista, sofisticado, natural, sin look turístico ni stock, sin fondo plano, con vegetación oscura y bruma sutil**
+**Un guacamayo cubano como protagonista absoluto de una landing premium sobre conservación de aves endémicas en Cuba, retrato editorial cinematográfico, posado sobre una rama natural en un bosque cubano oscuro y húmedo, iluminación suave y dramática filtrada entre la vegetación, fondo con profundidad y atmósfera tropical sombreada, detalle muy rico del plumaje rojo azul y blanco, presencia noble y serena, composición elegante con espacio negativo para diseño web, dark cinematic conservation, premium editorial wildlife image, realista, sofisticado, natural, sin look turístico ni stock, sin fondo plano, con vegetación oscura y bruma sutil**
 
 ## Prompt corto / apoyo
 
-**Tocororo cubano en retrato hero dark cinematográfico, bosque tropical cubano oscuro, luz suave, plumaje detallado, composición premium editorial con espacio negativo para landing web**
+**Guacamayo cubano en retrato hero dark cinematográfico, bosque tropical cubano oscuro, luz suave, plumaje detallado, composición premium editorial con espacio negativo para landing web**
 
 ## Negative prompt específico
 
@@ -215,7 +215,7 @@ versión panorámica o semi panorámica con espacio para copy
 
 ### Mobile
 
-crop vertical donde el tocororo siga siendo protagonista y no quede cortado de forma torpe
+crop vertical donde el guacamayo siga siendo protagonista y no quede cortado de forma torpe
 
 ---
 
@@ -231,7 +231,7 @@ Hero
 
 ## Objetivo visual
 
-Construir el entorno del hero: un fondo panorámico oscuro y profundo que sostenga el tono del proyecto sin competir con el tocororo ni con el copy.
+Construir el entorno del hero: un fondo panorámico oscuro y profundo que sostenga el tono del proyecto sin competir con el guacamayo ni con el copy.
 
 ## Prompt maestro largo
 
@@ -483,7 +483,7 @@ Ser la pieza más potente del collage de galería y dialogar con el hero sin dup
 
 ## Prompt maestro largo
 
-**Ave endémica cubana protagonista en composición dark premium, idealmente un tocororo o una especie visualmente poderosa, retrato natural cinematográfico con fuerte presencia visual, entorno oscuro y húmedo, detalle de plumaje, fondo orgánico desenfocado, conservación, editorial wildlife photography feel, sofisticado, realista, elegante, sin look stock ni wallpaper genérico**
+**Ave endémica cubana protagonista en composición dark premium, idealmente un guacamayo o una especie visualmente poderosa, retrato natural cinematográfico con fuerte presencia visual, entorno oscuro y húmedo, detalle de plumaje, fondo orgánico desenfocado, conservación, editorial wildlife photography feel, sofisticado, realista, elegante, sin look stock ni wallpaper genérico**
 
 ## Prompt corto
 
@@ -790,7 +790,7 @@ No en todos, pero sí a nivel de universo:
 
 Para que la web no parezca la misma imagen cortada 12 veces:
 
-* el mismo encuadre del tocororo
+* el mismo encuadre del guacamayo
 * la misma rama
 * la misma paleta exacta
 * la misma niebla en todos los bloques
@@ -861,15 +861,15 @@ Probaría mínimo 3 direcciones:
 
 ### Variación A
 
-tocororo más cercano, muy protagonista, fondo más difuso
+guacamayo más cercano, muy protagonista, fondo más difuso
 
 ### Variación B
 
-tocororo algo más integrado en el hábitat, con más entorno visible
+guacamayo algo más integrado en el hábitat, con más entorno visible
 
 ### Variación C
 
-tocororo en pose más lateral con composición pensada para copy a la izquierda o derecha
+guacamayo en pose más lateral con composición pensada para copy a la izquierda o derecha
 
 ---
 
@@ -935,7 +935,7 @@ Generar:
 Y ahí revisar:
 
 * si el nivel de oscuridad es correcto
-* si el tocororo funciona como símbolo
+* si el guacamayo funciona como símbolo
 * si las ilustraciones de retos están dentro del mismo universo
 
 ---

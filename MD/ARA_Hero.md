@@ -4,7 +4,8 @@
 > **Sección:** Hero principal de la landing
 > **Estado:** Hero system v1
 > **Base visual aprobada:** **Dark cinematic conservation**
-> **Referencia visual madre:** la **primera hero** que ya aprobamos, pasada a dark y con **tocororo** como ave principal.
+> **Referencia visual madre:** la **primera hero** que ya aprobamos, pasada a dark y con **guacamayo** como ave principal.
+> **Especie:** *Ara tricolor* — el guacamayo cubano, extinto desde el s. XIX. Da nombre al proyecto ARA y sintetiza su misión: lo que se pierde por inacción no vuelve.
 
 ---
 
@@ -84,7 +85,7 @@ El hero debe tener el nivel de una home page de una fundación o proyecto cultur
 
 La cubanía debe estar en:
 
-* el tocororo
+* el guacamayo
 * el relato del endemismo
 * la paleta derivada del logo
 * el ecosistema visual
@@ -108,7 +109,7 @@ Eyebrow + H1 + párrafo + CTAs + stats/pilares.
 
 ## Capa C — Columna visual derecha
 
-Tocororo + fondo cinematográfico + overlay de isotipo + glow / gradientes / profundidad.
+Guacamayo + fondo cinematográfico + overlay de isotipo + glow / gradientes / profundidad.
 
 ## Capa D — Salida del hero hacia la siguiente sección
 
@@ -650,7 +651,7 @@ Icono posible:
 La parte derecha es la **capa emocional dominante** del hero.
 Tiene que hacer dos cosas:
 
-1. Mostrar una imagen poderosa del **tocororo**
+1. Mostrar una imagen poderosa del **guacamayo**
 2. Integrarla con el universo visual de ARA sin que parezca una foto “pegada”
 
 ---
@@ -659,7 +660,7 @@ Tiene que hacer dos cosas:
 
 ## Ave aprobada
 
-**Tocororo**
+**Guacamayo**
 
 ## Motivo
 
@@ -671,7 +672,7 @@ Tiene que hacer dos cosas:
 
 ---
 
-# 8.2 Tipo de imagen del tocororo
+# 8.2 Tipo de imagen del guacamayo
 
 La imagen ideal del hero no es un recorte plano del ave sobre un fondo neutro.
 Debe ser una **fotografía editorial dark**, con estas características:
@@ -698,11 +699,11 @@ Debe ser una **fotografía editorial dark**, con estas características:
 
 ---
 
-# 8.3 Posición del tocororo en el layout
+# 8.3 Posición del guacamayo en el layout
 
 ## Desktop
 
-El tocororo debe ubicarse aproximadamente:
+El guacamayo debe ubicarse aproximadamente:
 
 * centrado verticalmente respecto al bloque editorial
 * anclado a la derecha
@@ -778,7 +779,7 @@ Más oscura y limpia para soportar el copy.
 
 ## Zona derecha
 
-Puede tener más riqueza visual y luminosa para enmarcar al tocororo.
+Puede tener más riqueza visual y luminosa para enmarcar al guacamayo.
 
 ---
 
@@ -962,7 +963,7 @@ En mobile hay que **recomponer** el hero, no reducirlo.
 4. Subheadline
 5. CTAs apilados
 6. Pilares en stack o carrusel corto
-7. Imagen del tocororo integrada al final del hero o detrás en una composición muy controlada
+7. Imagen del guacamayo integrada al final del hero o detrás en una composición muy controlada
 
 ---
 
@@ -1172,7 +1173,7 @@ Los pilares deben entrar como un bloque, pero con stagger interno.
 
 ---
 
-# 16.9 Animación del tocororo
+# 16.9 Animación del guacamayo
 
 La imagen del ave no debe entrar antes que el copy.
 Debe sentirse como una revelación que acompaña al mensaje.
@@ -1208,7 +1209,7 @@ Una vez cargado, el hero no debe quedarse muerto.
 
 ---
 
-# 17.1 Movimiento continuo del tocororo / imagen
+# 17.1 Movimiento continuo del guacamayo / imagen
 
 No mover el ave como si flotara.
 La sensación debe venir de la **fotografía**, no de que el pájaro se desplace.
@@ -1379,7 +1380,7 @@ Formato: SVG
 
 ## HERO-IMG-01
 
-**Tocororo principal hero dark**
+**Guacamayo principal hero dark**
 Uso: imagen protagonista del hero
 Formato ideal: WebP / PNG de alta resolución
 
@@ -1417,7 +1418,7 @@ Todos en SVG.
 
 ---
 
-# 21.1 HERO-IMG-01 — Tocororo principal hero dark
+# 21.1 HERO-IMG-01 — Guacamayo principal hero dark
 
 ## Uso
 
@@ -1440,7 +1441,7 @@ Es el corazón emocional del bloque.
 * cinematográfica
 * contraste medio-alto
 * sombras profundas
-* plumaje fiel al tocororo
+* plumaje fiel al guacamayo
 
 ## Color grading
 
@@ -1565,7 +1566,7 @@ Nada de zooms agresivos, floats raros o animaciones “tech”.
 * Subheadline explicativa
 * 2 CTAs
 * 3 pilares de misión
-* Tocororo hero dark a la derecha
+* Guacamayo hero dark a la derecha
 * Overlay sutil del isotipo ARA
 * transición suave hacia “Retos”
 

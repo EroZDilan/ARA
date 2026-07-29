@@ -92,6 +92,10 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
+      data-perch-x="0.27"
+      data-perch-y="0.03"
+      data-perch-scale="1.2"
+      data-perch-face="left"
       className="relative isolate overflow-hidden bg-bg-forest"
     >
       {/* Capa de fondo atmosférico */}
@@ -207,32 +211,12 @@ export default function Hero() {
             style={{ y: reduce ? 0 : visualY }}
             className="lg:col-span-5"
           >
-            <motion.div
-              animate={reduce ? undefined : { scale: [1, 1.035, 1] }}
-              transition={
-                reduce
-                  ? undefined
-                  : { duration: 26, repeat: Infinity, ease: "linear" }
-              }
-              className="relative aspect-[4/5] w-full overflow-hidden rounded-[32px] border border-dashed border-border-soft sm:aspect-[3/4] lg:aspect-[4/5]"
-              style={{
-                background:
-                  "radial-gradient(120% 100% at 70% 20%, rgba(224,169,43,0.16) 0%, rgba(11,39,68,0.4) 45%, rgba(7,23,38,0.95) 80%), linear-gradient(160deg, #112a22 0%, #0b2744 55%, #071726 100%)",
-              }}
+            <div
+              aria-hidden
+              className="relative aspect-[4/5] w-full sm:aspect-[3/4] lg:aspect-[4/5]"
             >
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-8 text-center">
-                <span className="text-xs uppercase tracking-[0.14em] text-text-disabled">
-                  HERO-IMG-01
-                </span>
-                <span className="max-w-[24ch] text-sm text-text-tertiary">
-                  Tocororo hero dark — reemplazar con foto editorial final
-                </span>
-              </div>
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-gradient-to-t from-bg-forest/70 via-transparent to-transparent"
-              />
-            </motion.div>
+              {/* Espacio reservado: el guacamayo 3D (GuacamayoScene) se posa aquí encima de la página */}
+            </div>
           </motion.div>
         </div>
 
